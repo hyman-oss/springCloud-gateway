@@ -1,0 +1,63 @@
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: dev
+  application:
+    name: DOG-GATEWAY-CIPHER
+  cloud:
+    config:
+      label: master
+      profile: dev
+ #     uri: http://172.16.8.151:9200/
+      discovery:
+        enabled: true  # 开启
+        service-id: DOG-CONFIG-SERVER # 指定配置中心服务端的server-id
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.16.8.31:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+---
+spring:
+  profiles: test
+  application:
+    name: DOG-GATEWAY-CIPHER
+  cloud:
+    config:
+      label: master
+      profile: test
+      discovery:
+        enabled: true  # 开启
+        service-id: DOG-CONFIG-SERVER # 指定配置中心服务端的server-id
+---
+spring:
+  profiles: pro
+  application:
+    name: DOG-GATEWAY-CIPHER
+  cloud:
+    config:
+      label: master
+      profile: pro
+      discovery:
+        enabled: true  # 开启
+        service-id: DOG-CONFIG-SERVER # 指定配置中心服务端的server-id
+---
+spring:
+  profiles: master
+  application:
+    name: DOG-GATEWAY-CIPHER
+  cloud:
+    config:
+      label: master
+      profile: pro
+      discovery:
+        enabled: true  # 开启
+        service-id: DOG-CONFIG-SERVER # 指定配置中心服务端的server-id
